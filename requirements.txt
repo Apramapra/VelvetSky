@@ -1,0 +1,14 @@
+# VelvetSky — Production Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core
+flask>=3.0,<4
+gunicorn>=21,<22
+
+# Security — required, not optional
+bcrypt>=4.1,<5
+flask-limiter>=3.5,<4
+
+# Performance
+flask-compress>=1.15,<2
+requests>=2.31,<3
