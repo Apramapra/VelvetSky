@@ -1,15 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VELVETSKY – For Your Every Background Need</title>
+<title>WALLHIVE – For Your Every Background Need</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#c8a97e">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="VelvetSky">
+<meta name="apple-mobile-web-app-title" content="WallHive">
 <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -511,9 +511,15 @@ footer .logo{font-size:1.2rem;}
 .footer-admin-link:hover{color:var(--accent2);}
 
 /* ─────────────────────────────────────────────
-   RESPONSIVE
+   RESPONSIVE — mobile-first
 ───────────────────────────────────────────── */
-@media(max-width:1400px){.wallpaper-grid{columns:3;}}
+
+/* ── 1400 → 3-column masonry ── */
+@media(max-width:1400px){
+  .wallpaper-grid{columns:3;}
+}
+
+/* ── 900 → tablet ── */
 @media(max-width:900px){
   .wallpaper-grid{columns:2;}
   .upload-form{grid-template-columns:1fr;}
@@ -521,23 +527,143 @@ footer .logo{font-size:1.2rem;}
   .auth-left{display:none;}
   .auth-right{padding:60px 28px;}
   .admin-stats{grid-template-columns:repeat(2,1fr);}
+  /* analytics grid: side-by-side on tablet too */
 }
+
+/* ── 680 → large phone ── */
 @media(max-width:680px){
-  nav{padding:0 1rem;}
+  /* Nav */
+  nav{padding:0 1rem;height:56px;}
+  .logo{font-size:1.25rem;}
   .nav-links{display:none;}
+  .btn{padding:7px 16px;font-size:.8rem;}
+
+  /* Hero */
+  .hero{padding:5.5rem 1rem 1rem;}
+  .hero-title{font-size:clamp(1.9rem,9vw,2.8rem);}
+  .hero-sub{font-size:.9rem;}
+  .hero-search-wrap{max-width:100%;}
+  .hero-search-wrap input{font-size:.9rem;padding:.8rem 3.8rem .8rem 1.2rem;}
+
+  /* Gallery section */
   .section{padding:0 1rem;}
   .after-hero{padding:0 1rem 60px;}
-  .cats{padding:0 1rem;}
+  .cats{padding:0;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:.4rem;scrollbar-width:none;}
+  .cats::-webkit-scrollbar{display:none;}
+  .cat-pill{flex-shrink:0;padding:.35rem .85rem;font-size:.75rem;}
+
+  /* Gallery toolbar */
+  .gallery-toolbar{flex-wrap:wrap;gap:.5rem;}
+  .sort-select{font-size:.75rem;padding:.3rem .8rem;padding-right:1.8rem;}
+  .random-btn{font-size:.75rem;padding:.3rem .8rem;}
+
+  /* Masonry */
   .wallpaper-grid{columns:2;column-gap:8px;}
   .wall-card{margin-bottom:8px;}
-  footer{flex-direction:column;gap:10px;text-align:center;}
-  .admin-header{padding:14px 1rem;}
-  .admin-body{padding:24px 1rem 60px;}
-  .admin-stats{grid-template-columns:repeat(2,1fr);}
+
+  /* Section count */
+  .section-label{font-size:.95rem;}
+
+  /* Auth */
+  .auth-right{padding:48px 20px 40px;}
+  .auth-form-title{font-size:1.5rem;}
   .form-row{grid-template-columns:1fr;}
+  .btn-auth{padding:12px;}
+
+  /* Footer */
+  footer{flex-direction:column;gap:8px;text-align:center;padding:1.5rem 1rem;}
+
+  /* Admin */
+  .admin-header{padding:12px 1rem;flex-wrap:wrap;gap:.5rem;}
+  .admin-header > div:last-child{flex-wrap:wrap;}
+  .admin-body{padding:20px 1rem 60px;}
+  .admin-stats{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .stat-value{font-size:1.6rem;}
+  .manage-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}
+
+  /* Admin: upload form */
+  .upload-card{padding:18px;}
+  .upload-tabs{flex-wrap:wrap;width:100%;}
+  .upload-tab{flex:1;text-align:center;padding:7px 10px;font-size:.78rem;}
+
+  /* Bulk upload grid */
+  #tab-bulk > div:first-child{grid-template-columns:1fr!important;}
+
+  /* Analytics */
+  .insight-grid{grid-template-columns:repeat(2,1fr);}
+  .cat-bar-row{grid-template-columns:72px 1fr 44px;}
+
+  /* Analytics side-by-side → stacked */
+  .admin-body > div[style*="grid-template-columns:1fr 1fr"]{
+    display:flex!important;flex-direction:column!important;gap:14px!important;
+  }
+
+  /* GitHub/AI config grids */
+  #gh-config-fields{grid-template-columns:1fr!important;}
+  .admin-body .upload-card > div[style*="grid-template-columns:1fr 1fr"]{
+    grid-template-columns:1fr!important;
+  }
+
+  /* AI provider buttons */
+  .admin-body div[style*="display:flex;gap:6px"]{flex-direction:column;}
+
+  /* Toast */
+  .toast{max-width:calc(100vw - 2rem);font-size:.82rem;padding:.55rem 1.1rem;}
+
+  /* Lightbox */
+  .lightbox img{max-width:96vw;max-height:55vh;}
+  .lightbox-actions{gap:8px;}
+  .lb-nav{width:38px;height:52px;font-size:1.5rem;}
+  .lb-prev{left:6px;}
+  .lb-next{right:6px;}
+  .lb-meta{padding:0 .5rem;}
+  .lb-title{font-size:1rem;}
+
+  /* Admin Users table */
+  .admin-users-table{font-size:.78rem;}
+  .admin-users-table th,.admin-users-table td{padding:8px 8px;}
+
+  /* Meta modal */
+  .meta-modal{padding:20px 16px;}
 }
+
+/* ── 480 → small phone ── */
+@media(max-width:480px){
+  /* AI provider header row wrap */
+  .admin-body > .upload-card > div[style*="display:flex;align-items:center"]{
+    flex-wrap:wrap;
+  }
+  /* Analytics time-filter chips scroll */
+  .time-filter-bar{overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;scrollbar-width:none;}
+  .time-filter-bar::-webkit-scrollbar{display:none;}
+  .tf-btn{flex-shrink:0;}
+
+  /* Lightbox share/download buttons */
+  .lightbox-actions .btn{padding:8px 14px;font-size:.8rem;}
+  .lb-share{padding:8px 14px;font-size:.8rem;}
+}
+
+/* ── 380 → very small phone ── */
 @media(max-width:380px){
   .wallpaper-grid{columns:1;}
+  .hero-title{font-size:1.75rem;}
+  .admin-stats{grid-template-columns:1fr 1fr;}
+  .insight-grid{grid-template-columns:1fr 1fr;}
+}
+
+/* ── Touch: always show card overlay on mobile ── */
+@media(hover:none){
+  .card-overlay{opacity:1;}
+  .wall-card:hover{transform:none;box-shadow:none;}
+  .wall-card:hover img{transform:none;}
+}
+
+/* ── Favourites view on mobile ── */
+@media(max-width:680px){
+  #view-favourites > div[style*="padding:3rem"]{
+    padding:2rem 1rem 60px!important;
+  }
+  #view-favourites nav{padding:1rem!important;}
 }
 
 
@@ -618,6 +744,57 @@ footer .logo{font-size:1.2rem;}
 .admin-search-input{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:9px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.86rem;flex:1;outline:none;transition:border .2s;}
 .admin-search-input:focus{border-color:rgba(232,213,163,.35);}
 .admin-search-input::placeholder{color:var(--muted);}
+
+/* ── MOBILE HAMBURGER ── */
+.nav-hamburger{
+  display:none;
+  flex-direction:column;justify-content:center;align-items:center;
+  gap:5px;width:40px;height:40px;border:none;background:transparent;
+  cursor:pointer;padding:4px;border-radius:8px;
+  transition:background .2s;
+}
+.nav-hamburger:hover{background:rgba(255,255,255,.07);}
+.nav-hamburger span{
+  display:block;width:22px;height:2px;background:var(--text);
+  border-radius:2px;transition:transform .25s,opacity .25s;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ── MOBILE MENU DRAWER ── */
+.mobile-menu{
+  display:none;
+  position:fixed;top:56px;left:0;right:0;
+  background:rgba(14,14,14,.97);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  z-index:190;
+  opacity:0;
+  transition:opacity .22s cubic-bezier(.22,1,.36,1);
+  pointer-events:none;
+}
+.mobile-menu.open{
+  display:block;opacity:1;pointer-events:auto;
+}
+.mobile-menu-inner{padding:1rem 1.25rem 1.4rem;}
+.mobile-menu-link{
+  display:block;padding:.75rem .25rem;
+  color:var(--muted);font-size:.95rem;text-decoration:none;
+  border-bottom:1px solid var(--border);transition:color .2s;
+}
+.mobile-menu-link:last-of-type{border-bottom:none;}
+.mobile-menu-link:hover{color:var(--text);}
+.mobile-menu-divider{height:1px;background:var(--border);margin:.75rem 0;}
+.mobile-menu-actions{display:flex;flex-direction:column;gap:.5rem;}
+
+@media(max-width:680px){
+  .nav-hamburger{display:flex;}
+  .nav-actions{display:none;}
+}
+@media(min-width:681px){
+  .mobile-menu{display:none!important;}
+}
 </style>
 </head>
 <body>
@@ -626,7 +803,7 @@ footer .logo{font-size:1.2rem;}
   NAV (shared)
 ══════════════════════════════════════════ -->
 <nav id="main-nav">
-  <div class="logo" onclick="goHome()">VELVET<span>SKY</span></div>
+  <div class="logo" onclick="goHome()">WALL<span>HIVE</span></div>
   <ul class="nav-links">
     <li><a href="#gallery" onclick="goHome();return false;">Home</a></li>
     <li><a href="#gallery" onclick="goHome();return false;">Wallpapers</a></li>
@@ -637,7 +814,25 @@ footer .logo{font-size:1.2rem;}
     <a class="btn btn-outline" href="#signin" onclick="showSignIn();return false;">Sign In</a>
     <a class="btn btn-fill"    href="#signup" onclick="showSignUp();return false;">Sign Up</a>
   </div>
+  <!-- Mobile hamburger -->
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<!-- Mobile drawer -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-inner">
+    <a class="mobile-menu-link" href="#gallery" onclick="goHome();closeMobileMenu();return false;">Home</a>
+    <a class="mobile-menu-link" href="#gallery" onclick="goHome();closeMobileMenu();return false;">Wallpapers</a>
+    <a class="mobile-menu-link" id="mob-favs-link" href="#favourites" onclick="showFavourites();closeMobileMenu();return false;" style="display:none;">Favourites</a>
+    <a class="mobile-menu-link" href="#" onclick="showToast('Live Wallpapers coming soon!','success');closeMobileMenu();return false;">Live Wallpaper</a>
+    <div class="mobile-menu-divider"></div>
+    <div class="mobile-menu-actions" id="mobile-nav-actions">
+      <a class="btn btn-outline" style="width:100%;text-align:center;" href="#signin" onclick="showSignIn();closeMobileMenu();return false;">Sign In</a>
+      <a class="btn btn-fill"    style="width:100%;text-align:center;display:block;margin-top:.5rem;" href="#signup" onclick="showSignUp();closeMobileMenu();return false;">Sign Up</a>
+    </div>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════
   VIEW: GALLERY
@@ -694,8 +889,8 @@ footer .logo{font-size:1.2rem;}
     </div>
   </div>
   <footer>
-    <div class="logo">VELVET<span>SKY</span></div>
-    <span>© 2026 Velvetsky. All rights reserved.</span>
+    <div class="logo">WALL<span>HIVE</span></div>
+    <span>© 2026 WallHive. All rights reserved.</span>
     <a class="footer-admin-link" onclick="showAdminLogin()">Admin</a>
   </footer>
 </div>
@@ -709,7 +904,7 @@ footer .logo{font-size:1.2rem;}
     <div class="auth-left">
       <div class="auth-left-bg"></div>
       <div class="auth-left-content">
-        <div class="auth-brand">VELVET<span>SKY</span></div>
+        <div class="auth-brand">WALL<span>HIVE</span></div>
         <div class="auth-brand-sub">For Your Every Background Need</div>
       </div>
       <div class="auth-left-quote">
@@ -761,7 +956,7 @@ footer .logo{font-size:1.2rem;}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         </button>
         <div style="margin-top:1.5rem;text-align:center;">
-          <span style="font-size:.8rem;color:var(--muted);">Back to <a href="#gallery" onclick="goHome();return false;" style="color:var(--accent);cursor:pointer;text-decoration:none;">Velvetsky Gallery →</a></span>
+          <span style="font-size:.8rem;color:var(--muted);">Back to <a href="#gallery" onclick="goHome();return false;" style="color:var(--accent);cursor:pointer;text-decoration:none;">WallHive Gallery →</a></span>
         </div>
       </div>
     </div>
@@ -776,7 +971,7 @@ footer .logo{font-size:1.2rem;}
     <div class="auth-left">
       <div class="auth-left-bg" style="background-image:linear-gradient(135deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.2) 50%,rgba(0,0,0,.6) 100%),url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=85');"></div>
       <div class="auth-left-content">
-        <div class="auth-brand">VELVET<span>SKY</span></div>
+        <div class="auth-brand">WALL<span>HIVE</span></div>
         <div class="auth-brand-sub">For Your Every Background Need</div>
       </div>
       <div class="auth-left-quote">
@@ -849,7 +1044,7 @@ footer .logo{font-size:1.2rem;}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
         </button>
         <div style="margin-top:1.4rem;text-align:center;">
-          <span style="font-size:.8rem;color:var(--muted);">Back to <a href="#gallery" onclick="goHome();return false;" style="color:var(--accent);cursor:pointer;text-decoration:none;">Velvetsky Gallery →</a></span>
+          <span style="font-size:.8rem;color:var(--muted);">Back to <a href="#gallery" onclick="goHome();return false;" style="color:var(--accent);cursor:pointer;text-decoration:none;">WallHive Gallery →</a></span>
         </div>
       </div>
     </div>
@@ -860,7 +1055,7 @@ footer .logo{font-size:1.2rem;}
 <div class="admin-panel" id="admin-panel">
   <div class="admin-header">
     <div>
-      <span class="admin-logo">VELVET<span>SKY</span></span>
+      <span class="admin-logo">WALL<span>HIVE</span></span>
       <span class="admin-badge">Admin</span>
     </div>
     <div style="display:flex;gap:.8rem;align-items:center;">
@@ -1085,7 +1280,7 @@ footer .logo{font-size:1.2rem;}
         </div>
         <div>
           <label class="form-label">Repository Name</label>
-          <input class="form-input" type="text" id="gh-repo-input" placeholder="walldrop-images" oninput="liveUpdateGHConfig()">
+          <input class="form-input" type="text" id="gh-repo-input" placeholder="wallhive-images" oninput="liveUpdateGHConfig()">
           <div style="font-size:.7rem;color:var(--text-dim);margin-top:4px;">Must be a <strong style="color:var(--gold);">public</strong> GitHub repo</div>
         </div>
         <div>
@@ -1115,13 +1310,13 @@ footer .logo{font-size:1.2rem;}
         <span style="font-size:1.5rem;">🗄️</span>
         <div>
           <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--accent);">GitHub Database — Persistent Cloud Backup</div>
-          <div style="font-size:.78rem;color:var(--text-dim);margin-top:2px;">All wallpaper data (URLs, titles, categories) is saved as <strong style="color:rgba(255,184,0,.8)">walldrop-db.json</strong> in a separate GitHub repo. Your data survives server restarts, browser clears, and device changes.</div>
+          <div style="font-size:.78rem;color:var(--text-dim);margin-top:2px;">All wallpaper data (URLs, titles, categories) is saved as <strong style="color:rgba(255,184,0,.8)">wallhive-db.json</strong> in a separate GitHub repo. Your data survives server restarts, browser clears, and device changes.</div>
         </div>
         <div id="gh-db-status" style="margin-left:auto;font-size:.78rem;font-weight:700;padding:4px 14px;border-radius:20px;background:rgba(255,100,100,.1);border:1px solid rgba(255,100,100,.25);color:rgba(255,130,130,1);white-space:nowrap;">⚠ Not Configured</div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
         <div style="grid-column:span 2;background:rgba(255,184,0,.04);border:1px solid rgba(255,184,0,.15);border-radius:10px;padding:10px 14px;font-size:.76rem;color:rgba(255,220,100,.75);line-height:1.6;">
-          💡 <strong style="color:var(--gold)">Can be the same token as above</strong> — just create a separate <em>public</em> repo (e.g. <code style="background:rgba(0,0,0,.4);padding:1px 5px;border-radius:3px;">walldrop-db</code>) to keep images and data separate. Every time you add/delete a wallpaper, the JSON is auto-committed there.
+          💡 <strong style="color:var(--gold)">Can be the same token as above</strong> — just create a separate <em>public</em> repo (e.g. <code style="background:rgba(0,0,0,.4);padding:1px 5px;border-radius:3px;">wallhive-db</code>) to keep images and data separate. Every time you add/delete a wallpaper, the JSON is auto-committed there.
         </div>
         <div>
           <label class="form-label">GitHub Token</label>
@@ -1134,7 +1329,7 @@ footer .logo{font-size:1.2rem;}
         </div>
         <div>
           <label class="form-label">Database Repository Name</label>
-          <input class="form-input" type="text" id="gh-db-repo-input" placeholder="walldrop-db" oninput="liveUpdateGHDbConfig()">
+          <input class="form-input" type="text" id="gh-db-repo-input" placeholder="wallhive-db" oninput="liveUpdateGHDbConfig()">
           <div style="font-size:.7rem;color:var(--text-dim);margin-top:4px;">Must be a <strong style="color:var(--gold);">public</strong> repo — can be different from your images repo</div>
         </div>
         <div>
@@ -1158,7 +1353,7 @@ footer .logo{font-size:1.2rem;}
         </button>
       </div>
       <div id="gh-db-result" style="margin-top:4px;font-size:.8rem;display:none;padding:10px 14px;border-radius:10px;"></div>
-      <div style="font-size:.74rem;color:var(--text-dim);margin-top:8px;">📁 Data is saved as <code style="background:rgba(0,0,0,.35);padding:1px 6px;border-radius:3px;">walldrop-db.json</code> in the root of your DB repo — auto-pushed on every upload or delete.</div>
+      <div style="font-size:.74rem;color:var(--text-dim);margin-top:8px;">📁 Data is saved as <code style="background:rgba(0,0,0,.35);padding:1px 6px;border-radius:3px;">wallhive-db.json</code> in the root of your DB repo — auto-pushed on every upload or delete.</div>
     </div>
 
     <!-- ── ANALYTICS ── -->
@@ -1232,14 +1427,14 @@ footer .logo{font-size:1.2rem;}
 </div>
 
 <!-- Admin Login Modal -->
-<div class="modal-backdrop" id="admin-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);z-index:500;align-items:center;justify-content:center;padding:20px;">
+<div class="modal-backdrop" id="admin-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);z-index:500;align-items:center;justify-content:center;padding:16px;overflow-y:auto;">
   <div style="background:#181410;border:1px solid var(--border-gold);border-radius:22px;padding:36px;width:100%;max-width:400px;position:relative;animation:fadeIn .25s ease;">
     <button style="position:absolute;top:14px;right:18px;background:none;border:none;color:rgba(255,255,255,.4);font-size:1.4rem;cursor:pointer;line-height:1;" onclick="closeAdminModal()">×</button>
     <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--accent);margin-bottom:.2rem;">Admin Login</div>
     <div style="font-size:.82rem;color:var(--text-dim);margin-bottom:1.8rem;">Restricted access — administrators only.</div>
     <div class="form-group">
       <label class="form-label">Email</label>
-      <input class="form-input" type="email" id="adm-user" placeholder="admin@walldrop.nf.gd" autocomplete="off">
+      <input class="form-input" type="email" id="adm-user" placeholder="admin@wallhive.nf.gd" autocomplete="off">
     </div>
     <div class="form-group">
       <label class="form-label">Password</label>
@@ -1255,7 +1450,7 @@ footer .logo{font-size:1.2rem;}
 ══════════════════════════════════════════ -->
 <div class="view" id="view-favourites">
   <nav style="position:sticky;top:0;z-index:200;padding:1.1rem 2.5rem;background:rgba(10,10,10,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1.5rem;">
-    <div class="logo" onclick="goHome()" style="cursor:pointer;">VELVET<span style="color:var(--accent);">SKY</span></div>
+    <div class="logo" onclick="goHome()" style="cursor:pointer;">WALL<span style="color:var(--accent);">HIVE</span></div>
     <a href="#gallery" onclick="goHome();return false;" style="color:var(--muted);font-size:.85rem;text-decoration:none;display:flex;align-items:center;gap:.4rem;">
       ← Back to Gallery
     </a>
@@ -1272,16 +1467,16 @@ footer .logo{font-size:1.2rem;}
     </div>
   </div>
   <footer style="border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:.8rem;">
-    <div class="logo" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;">VELVET<span style="color:var(--accent);">SKY</span></div>
-    <span>© 2026 Velvetsky</span>
+    <div class="logo" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;">WALL<span style="color:var(--accent);">HIVE</span></div>
+    <span>© 2026 WallHive</span>
   </footer>
 </div>
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
-  <button class="lightbox-close" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
   <button class="lb-nav lb-prev" id="lb-prev" onclick="lbNav(-1)">&#8249;</button>
-  <button class="lb-nav lb-next" id="lb-next" onclick="lbNav(1)">&#8250;</button>×</button>
+  <button class="lb-nav lb-next" id="lb-next" onclick="lbNav(1)">&#8250;</button>
   <img id="lb-img" src="" alt="">
   <div class="lb-meta">
     <div class="lb-title" id="lb-title"></div>
@@ -1320,9 +1515,9 @@ var GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID';
 })();
 // NOTE: Admin credentials are validated server-side via /api/login.
 //       They have been removed from the client to prevent exposure.
-const WALLS_KEY   = 'walldrop-wallpapers';
-const USERS_KEY   = 'walldrop-users';
-const SESSION_KEY = 'walldrop-session';
+const WALLS_KEY   = 'wallhive-wallpapers';
+const USERS_KEY   = 'wallhive-users';
+const SESSION_KEY = 'wallhive-session';
 
 // ── CLOUDFLARE R2 CONFIG ──────────────────
 // Set these to enable real image storage in Cloudflare R2.
@@ -1331,7 +1526,7 @@ const SESSION_KEY = 'walldrop-session';
 // R2_WORKER_URL  → URL of your deployed Cloudflare Worker (see README below)
 // R2_BUCKET_PUBLIC_URL → Public URL of your R2 bucket (e.g. https://pub-xxxx.r2.dev)
 //
-const R2_WORKER_URL      = '';          // e.g. 'https://walldrop-r2.YOUR_NAME.workers.dev'
+const R2_WORKER_URL      = '';          // e.g. 'https://wallhive-r2.YOUR_NAME.workers.dev'
 const R2_BUCKET_PUBLIC_URL = '';        // e.g. 'https://pub-abcd1234.r2.dev'
 const R2_USE_AUTH_TOKEN  = '';          // Optional bearer token you set in your Worker
 
@@ -1345,7 +1540,7 @@ function r2Enabled() { return R2_WORKER_URL.length > 0; }
 // GITHUB_TOKEN   → Personal Access Token (Settings → Developer settings → Tokens → Fine-grained)
 //                  Required scopes: Contents (read & write)
 // GITHUB_USER    → Your GitHub username  e.g. 'aryan2311'
-// GITHUB_REPO    → Repo name             e.g. 'walldrop-images'
+// GITHUB_REPO    → Repo name             e.g. 'wallhive-images'
 // GITHUB_BRANCH  → Branch to commit to   e.g. 'main'
 // GITHUB_FOLDER  → Folder inside repo    e.g. 'wallpapers'
 //
@@ -1367,7 +1562,7 @@ async function uploadToR2(file) {
   if (!r2Enabled()) throw new Error('R2 not configured');
 
   const ext   = file.name.split('.').pop() || 'jpg';
-  const key   = `walldrop/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+  const key   = `wallhive/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
   const endpoint = `${R2_WORKER_URL}/upload/${encodeURIComponent(key)}`;
 
   const headers = { 'Content-Type': file.type || 'image/jpeg' };
@@ -1397,8 +1592,8 @@ async function deleteFromR2(url) {
 }
 
 
-const DL_KEY      = 'walldrop-downloads';   // [{wallId, cat, title, ts}]
-const ACTIVITY_KEY= 'walldrop-activity';    // [{type:'dl'|'signup'|'upload', label, ts}]
+const DL_KEY      = 'wallhive-downloads';   // [{wallId, cat, title, ts}]
+const ACTIVITY_KEY= 'wallhive-activity';    // [{type:'dl'|'signup'|'upload', label, ts}]
 
 // ── LOAD/SAVE DOWNLOAD LOG ──
 async function loadDownloads() {
@@ -1459,7 +1654,7 @@ async function loadData() {
   showSkeletons();
 
   // Load DB repo config first (needed for auto-pull check below).
-  // MUST be awaited — it's async (fetches walldrop-config.json / localStorage).
+  // MUST be awaited — it's async (fetches wallhive-config.json / localStorage).
   // Without await, ghDbEnabled() is always false on the first visit and no auto-sync happens.
   await loadGHDbConfig();
 
@@ -1479,7 +1674,7 @@ async function loadData() {
           // Update local cache so next load is instant (GitHub fetch runs in parallel)
           try { localStorage.setItem(WALLS_KEY, JSON.stringify(wallpapers)); } catch(e){}
           try { localStorage.setItem(USERS_KEY, JSON.stringify(users)); } catch(e){}
-          console.log(`[WallDrop] Auto-synced ${wallpapers.length} wallpapers from GitHub DB ✓`);
+          console.log(`[WallHive] Auto-synced ${wallpapers.length} wallpapers from GitHub DB ✓`);
           // Skip localStorage fallback — we already have fresh data
           await restoreSession();
           applyInitialHash();           // honour URL hash; renders gallery if hash is #gallery
@@ -1488,7 +1683,7 @@ async function loadData() {
         }
       }
     } catch(e) {
-      console.warn('[WallDrop] GitHub DB auto-sync failed, falling back to localStorage:', e);
+      console.warn('[WallHive] GitHub DB auto-sync failed, falling back to localStorage:', e);
     }
   }
   // ── FALLBACK: Load from localStorage (fast local cache) ──────────────────
@@ -1668,7 +1863,10 @@ function checkGoogleConfig(noticeId) {
 function setNavUser(user) {
   const actions = document.getElementById('nav-actions');
   const favsLi  = document.getElementById('nav-favs-li');
+  const mobFavs = document.getElementById('mob-favs-link');
+  const mobActions = document.getElementById('mobile-nav-actions');
   if (favsLi) favsLi.style.display = user ? '' : 'none';
+  if (mobFavs) mobFavs.style.display = user ? '' : 'none';
   if (user) {
     const initials = ((user.fname||'?')[0]+(user.lname||'')[0]||'').toUpperCase();
     const avatarHtml = user.picture
@@ -1680,10 +1878,19 @@ function setNavUser(user) {
         <span class="user-name">${user.fname}${user.lname?' '+user.lname:''}</span>
       </div>
       <button class="btn btn-outline" style="padding:7px 16px;font-size:.83rem;" onclick="signOut()">Sign Out</button>`;
+    if (mobActions) mobActions.innerHTML = `
+      <div class="user-pill" onclick="showUserMenu();closeMobileMenu();" style="justify-content:flex-start;">
+        ${avatarHtml}
+        <span class="user-name">${user.fname}${user.lname?' '+user.lname:''}</span>
+      </div>
+      <button class="btn btn-outline" style="width:100%;margin-top:.5rem;" onclick="signOut();closeMobileMenu();">Sign Out</button>`;
   } else {
     actions.innerHTML = `
       <a class="btn btn-outline" href="#signin" onclick="showSignIn();return false;">Sign In</a>
       <a class="btn btn-fill"    href="#signup" onclick="showSignUp();return false;">Sign Up</a>`;
+    if (mobActions) mobActions.innerHTML = `
+      <a class="btn btn-outline" style="width:100%;text-align:center;" href="#signin" onclick="showSignIn();closeMobileMenu();return false;">Sign In</a>
+      <a class="btn btn-fill"    style="width:100%;text-align:center;display:block;margin-top:.5rem;" href="#signup" onclick="showSignUp();closeMobileMenu();return false;">Sign Up</a>`;
   }
 }
 
@@ -1826,7 +2033,7 @@ document.getElementById('si-password').addEventListener('keydown', e => { if(e.k
 
 function showForgot(e) {
   e.preventDefault();
-  showToast('Password reset: contact support@walldrop.com','error');
+  showToast('Password reset: contact support@wallhive.com','error');
 }
 
 // ──────────────────────────────────────────
@@ -2134,7 +2341,7 @@ function copyToClipboard(text) {
 
 function shareWall() {
   const w = wallpapers.find(x => x.id === _lbWallId);
-  const title = w ? (w.title || w.tag || 'VelvetSky Wallpaper') : 'VelvetSky';
+  const title = w ? (w.title || w.tag || 'WallHive Wallpaper') : 'WallHive';
   const shareUrl = location.origin + location.pathname + `#wall/${_lbWallId}`;
 
   const fallback = () => {
@@ -2395,7 +2602,7 @@ async function testAIKey() {
       // OpenRouter test
       const resp = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
-        headers: { 'Authorization': `Bearer ${k}`, 'Content-Type': 'application/json', 'HTTP-Referer': window.location.href, 'X-Title': 'WallDrop' },
+        headers: { 'Authorization': `Bearer ${k}`, 'Content-Type': 'application/json', 'HTTP-Referer': window.location.href, 'X-Title': 'WallHive' },
         body: JSON.stringify({ model: 'qwen/qwen2.5-vl-32b-instruct:free', messages: [{ role: 'user', content: 'hi' }], max_tokens: 1 })
       });
       const data = await resp.json().catch(()=>({}));
@@ -2529,9 +2736,9 @@ let currentFile = null;
 // Gemini: https://aistudio.google.com  |  OpenRouter: https://openrouter.ai
 // ══════════════════════════════════════════════════════════════════════════════
 
-const AI_KEY_LS      = 'walldrop-ai-key';
-const GEMINI_KEY_LS  = 'walldrop-gemini-key';
-const AI_PROVIDER_LS = 'walldrop-ai-provider';
+const AI_KEY_LS      = 'wallhive-ai-key';
+const GEMINI_KEY_LS  = 'wallhive-gemini-key';
+const AI_PROVIDER_LS = 'wallhive-ai-provider';
 
 function getAIKey()       { return localStorage.getItem(AI_KEY_LS) || ''; }
 function saveAIKey(k)     { k ? localStorage.setItem(AI_KEY_LS, k.trim()) : localStorage.removeItem(AI_KEY_LS); }
@@ -2644,7 +2851,7 @@ async function callOpenRouterModel(model, dataUrl, key) {
       'Authorization': `Bearer ${key}`,
       'Content-Type': 'application/json',
       'HTTP-Referer': window.location.href,
-      'X-Title': 'WallDrop'
+      'X-Title': 'WallHive'
     },
     body: JSON.stringify(body)
   });
@@ -3411,7 +3618,7 @@ async function applyGHConfig() {
   _ghBranchOverride = b;
   // Save permanently to localStorage (persists across sessions until explicitly removed)
   try {
-    localStorage.setItem('walldrop-gh-config', JSON.stringify({token:t, user:u, repo:r, branch:b}));
+    localStorage.setItem('wallhive-gh-config', JSON.stringify({token:t, user:u, repo:r, branch:b}));
   } catch(e) { console.warn('Could not persist GitHub config', e); }
   showR2Status();
   const badge = document.getElementById('gh-setup-status');
@@ -3427,7 +3634,7 @@ async function applyGHConfig() {
 async function clearGHConfig() {
   if (!confirm('Remove saved GitHub credentials?')) return;
   _ghTokenOverride = _ghUserOverride = _ghRepoOverride = _ghBranchOverride = '';
-  try { localStorage.removeItem('walldrop-gh-config'); } catch(e){}
+  try { localStorage.removeItem('wallhive-gh-config'); } catch(e){}
   document.getElementById('gh-token-input').value = '';
   document.getElementById('gh-user-input').value  = '';
   document.getElementById('gh-repo-input').value  = '';
@@ -3445,7 +3652,7 @@ async function clearGHConfig() {
 
 async function loadGHConfig() {
   try {
-    const raw = localStorage.getItem('walldrop-gh-config');
+    const raw = localStorage.getItem('wallhive-gh-config');
     if (!raw) return;
     const cfg = JSON.parse(raw);
     if (!cfg.token || !cfg.user || !cfg.repo) return;
@@ -3513,7 +3720,7 @@ async function testGHConfig() {
 
 
 // ══════════════════════════════════════════════════════════════
-// GITHUB DATABASE — Persistent cloud storage for walldrop-db.json
+// GITHUB DATABASE — Persistent cloud storage for wallhive-db.json
 // Saves wallpapers[] + users[] so data survives server changes.
 // ══════════════════════════════════════════════════════════════
 
@@ -3521,8 +3728,8 @@ let _ghDbToken  = '';
 let _ghDbUser   = '';
 let _ghDbRepo   = '';
 let _ghDbBranch = 'main';
-const GH_DB_FILE = 'walldrop-db.json';
-const GH_DB_LS_KEY = 'walldrop-gh-db-config';
+const GH_DB_FILE = 'wallhive-db.json';
+const GH_DB_LS_KEY = 'wallhive-gh-db-config';
 
 function ghDbEnabled() {
   // Token is only needed for writes (push). For public repos, user+repo is enough to read.
@@ -3579,11 +3786,11 @@ function _applyGHCfg(cfg) {
   return true;
 }
 
-// ── Load DB config: walldrop-config.json (shared file) then localStorage fallback ──
+// ── Load DB config: wallhive-config.json (shared file) then localStorage fallback ──
 let _ghDbLoadedFromFile = false;
 async function loadGHDbConfig() {
-  // 1. Try walldrop-config.json next to index.html (shared across ALL devices)
-  const configUrl = new URL('walldrop-config.json', window.location.href).href;
+  // 1. Try wallhive-config.json next to index.html (shared across ALL devices)
+  const configUrl = new URL('wallhive-config.json', window.location.href).href;
   try {
     const bust = Math.floor(Date.now() / 3600000); // cache-bust once per hour, not every request
     const r = await fetch(configUrl + '?v=' + bust);
@@ -3591,7 +3798,7 @@ async function loadGHDbConfig() {
     const cfg = await r.json();
     if (_applyGHCfg(cfg)) {
       try { localStorage.setItem(GH_DB_LS_KEY, JSON.stringify(cfg)); } catch(e) {}
-      console.log('[WallDrop] Loaded credentials from walldrop-config.json');
+      console.log('[WallHive] Loaded credentials from wallhive-config.json');
     }
   } catch(_) {
     // 2. Fallback: localStorage (this device only)
@@ -3621,18 +3828,18 @@ function applyGHDbConfig() {
   const cfg = {token:t, user:u, repo:r, branch:b};
   try { localStorage.setItem(GH_DB_LS_KEY, JSON.stringify(cfg)); } catch(e) {}
   setGHDbStatusBadge(true);
-  // Download walldrop-config.json for the user to place next to index.html
+  // Download wallhive-config.json for the user to place next to index.html
   const json = JSON.stringify(cfg, null, 2);
   const blob = new Blob([json], {type:'application/json'});
   const blobUrl = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = blobUrl; a.download = 'walldrop-config.json';
+  a.href = blobUrl; a.download = 'wallhive-config.json';
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(blobUrl), 5000);
   showGHDbResult('<strong style="color:rgba(60,220,100,1)">Credentials saved!</strong><br>'
-    + '<strong>walldrop-config.json downloaded</strong> — place it in the same folder as index.html.<br>'
+    + '<strong>wallhive-config.json downloaded</strong> — place it in the same folder as index.html.<br>'
     + 'Every device opening index.html from that folder will auto-load these credentials. No re-entering needed!', true);
-  showToast('Config saved + walldrop-config.json downloaded!', 'success');
+  showToast('Config saved + wallhive-config.json downloaded!', 'success');
   pushDBToGitHub(true);
 }
 
@@ -3661,7 +3868,7 @@ async function getGHDbFileSHA() {
   } catch(e) { return null; }
 }
 
-// ── Push walldrop-db.json to GitHub ──
+// ── Push wallhive-db.json to GitHub ──
 async function pushDBToGitHub(showFeedback = false) {
   if (!ghDbWriteEnabled()) return;
   try {
@@ -3674,7 +3881,7 @@ async function pushDBToGitHub(showFeedback = false) {
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(db, null, 2))));
     const sha = await getGHDbFileSHA();
     const body = {
-      message: `WallDrop DB update — ${new Date().toLocaleString()}`,
+      message: `WallHive DB update — ${new Date().toLocaleString()}`,
       branch: _ghDbBranch,
       content,
       ...(sha ? { sha } : {})
@@ -3707,7 +3914,7 @@ async function pushDBToGitHub(showFeedback = false) {
   }
 }
 
-// ── Pull walldrop-db.json from GitHub and restore data ──
+// ── Pull wallhive-db.json from GitHub and restore data ──
 async function pullDBFromGitHub() {
   if (!ghDbEnabled()) { showToast('Configure the DB repo (Username + Repo) first.', 'error'); return; }
   showGHDbResult('⬇ Fetching database from GitHub…', true);
@@ -3755,6 +3962,23 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowRight') { e.preventDefault(); lbNav(1); }
   if (e.key === 'Escape')     { e.preventDefault(); closeLightbox(); }
 });
+
+// ── Lightbox swipe (touch devices) ──
+(function(){
+  let _sx = 0, _sy = 0;
+  const lb = document.getElementById('lightbox');
+  lb.addEventListener('touchstart', function(e){
+    _sx = e.touches[0].clientX;
+    _sy = e.touches[0].clientY;
+  }, {passive:true});
+  lb.addEventListener('touchend', function(e){
+    const dx = e.changedTouches[0].clientX - _sx;
+    const dy = e.changedTouches[0].clientY - _sy;
+    if (Math.abs(dx) > Math.abs(dy) + 10 && Math.abs(dx) > 48) {
+      lbNav(dx < 0 ? 1 : -1);
+    }
+  }, {passive:true});
+})();
 
 // ──────────────────────────────────────────
 // FEATURE / PIN WALLPAPER (admin)
@@ -3952,6 +4176,36 @@ async function startBulkUpload() {
 }
 
 loadData();
+
+// ──────────────────────────────────────────
+// MOBILE MENU
+// ──────────────────────────────────────────
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const btn  = document.getElementById('nav-hamburger');
+  const open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open);
+}
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  const btn = document.getElementById('nav-hamburger');
+  btn.classList.remove('open');
+  btn.setAttribute('aria-expanded', 'false');
+}
+// Close drawer on outside tap
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('mobile-menu');
+  const btn  = document.getElementById('nav-hamburger');
+  if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
+    closeMobileMenu();
+  }
+});
+// Close drawer on route change
+['goHome','showSignIn','showSignUp','showFavourites'].forEach(fn => {
+  const orig = window[fn];
+  if (orig) window[fn] = function() { closeMobileMenu(); orig.apply(this, arguments); };
+});
 </script>
 <!--
 ════════════════════════════════════════════════════════════════════
@@ -3960,7 +4214,7 @@ loadData();
 
 STEP 1 — Create an R2 Bucket
   1. Go to https://dash.cloudflare.com → R2 Object Storage → Create bucket
-  2. Name it e.g. "walldrop-images"
+  2. Name it e.g. "wallhive-images"
   3. Under Settings → Public Access → Enable "R2.dev subdomain"
      Copy the public URL like: https://pub-abcd1234.r2.dev
   4. Set R2_BUCKET_PUBLIC_URL in the CONFIG section above.
@@ -3970,8 +4224,8 @@ STEP 2 — Deploy this Cloudflare Worker (copy to workers.dev)
   2. Paste the Worker code below, click Deploy.
   3. In the Worker → Settings → Bindings → R2 Bucket:
        Variable name: MY_BUCKET
-       R2 bucket: walldrop-images   (your bucket name)
-  4. Copy the worker URL (e.g. https://walldrop-r2.yourname.workers.dev)
+       R2 bucket: wallhive-images   (your bucket name)
+  4. Copy the worker URL (e.g. https://wallhive-r2.yourname.workers.dev)
   5. Set R2_WORKER_URL in the CONFIG section above.
 
 OPTIONAL — Secure your Worker with a token
@@ -4035,7 +4289,7 @@ HOW IT WORKS (end-to-end)
   ┌─ Browser ─────────────────────────────────────────┐
   │  Admin picks a file → handleFile() stores File    │
   │  doFileUpload() → uploadToR2(file)                │
-  │    PUT https://walldrop-r2.workers.dev/upload/key │
+  │    PUT https://wallhive-r2.workers.dev/upload/key │
   │         ↓                                         │
   │  Cloudflare Worker → env.MY_BUCKET.put(key, body) │
   │         ↓                                         │
